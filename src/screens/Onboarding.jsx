@@ -1,13 +1,7 @@
 import React, { useRef, useState } from "react";
-import {
-  View,
-  Text,
-  Dimensions,
-  Image,
-  StyleSheet,
-  Animated,
-  TouchableOpacity,
-} from "react-native";
+import { View, Dimensions, Image, StyleSheet, Animated } from "react-native";
+import ButtonsOnboarding from "../components/ButtonsOnboarding";
+import TextOnboarding from "../components/TextOnboarding";
 import { imagesOnboarding } from "../data/onboarding";
 
 const { width, height } = Dimensions.get("screen");
@@ -72,42 +66,17 @@ export default function Onboarding({ navigation }) {
           />
         </View>
       </View>
-      <View style={styles.wrapTitle}>
-        <Text style={styles.title}>
-          Travel Anywhere in the world without any hassle
-        </Text>
-      </View>
-      <View style={styles.wrapDescription}>
-        <Text style={styles.description}>
-          If you to travel a lot, this is your place! Here you can travel with
-          your favorite tour and enjoy...
-        </Text>
-      </View>
-      <View style={styles.wrapButtons}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("HomeScreen")}
-          style={[styles.button, { backgroundColor: "#F7F5EB" }]}
-        >
-          <Text style={[styles.textButton, { color: "#202020" }]}>Skip</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.8}
-          onPress={() => {
-            ref?.current?.scrollToOffset({
-              offset: (index + 1) * ITEM_WIDTH,
-              animated: true,
-            });
-            setIndex(index + 1);
-            index === 3 && navigation.navigate("HomeScreen");
-            index === 3 && setIndex(3);
-          }}
-        >
-          <Text style={styles.textButton}>
-            {index === 3 ? "Go Home" : "Next"}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TextOnboarding />
+
+      {/* botones para navegar y hacer el scroll */}
+      <ButtonsOnboarding
+        index={index}
+        setIndex={setIndex}
+        navigation={navigation}
+        ITEM_WIDTH={ITEM_WIDTH}
+        refProp={ref}
+        items={imagesOnboarding}
+      />
     </View>
   );
 }
@@ -148,48 +117,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -6 / 2,
     left: -6 / 2,
-  },
-  wrapTitle: {
-    maxWidth: 250,
-    alignSelf: "center",
-    marginTop: 20,
-  },
-  title: {
-    textAlign: "center",
-    fontSize: 18,
-    fontWeight: "bold",
-    letterSpacing: 1,
-    textTransform: "capitalize",
-    lineHeight: 24,
-  },
-  wrapDescription: {
-    maxWidth: 300,
-    alignSelf: "center",
-    marginTop: 16,
-  },
-  description: {
-    fontSize: 13,
-    textAlign: "center",
-    letterSpacing: 0.5,
-    lineHeight: 18,
-    opacity: 0.6,
-  },
-  wrapButtons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 12,
-    marginTop: 30,
-  },
-  button: {
-    backgroundColor: "#4D77FF",
-    width: 120,
-    paddingVertical: 16,
-    borderRadius: 50,
-    alignItems: "center",
-  },
-  textButton: {
-    color: "#fff",
-    letterSpacing: 0.3,
-    fontWeight: "700",
   },
 });

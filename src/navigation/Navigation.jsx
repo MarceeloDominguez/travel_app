@@ -19,7 +19,11 @@ export default function Navigation() {
         }}
       >
         <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
