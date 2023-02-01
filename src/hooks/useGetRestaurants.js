@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { restaurantsApi } from "../api";
 
-const bl_latitude = "12.113245";
-const tr_latitude = "12.346705";
-const bl_longitude = "109.095887";
-const tr_longitude = "109.262909";
+const bl_latitude = "1.352083";
+const tr_latitude = "1.985673";
+const bl_longitude = "103.819836";
+const tr_longitude = "103.356984";
 const limit = "10";
 const currency = "USD";
 const lang = "en_US";
